@@ -1,3 +1,1 @@
-facebook | anu@gmail.com | fbpassword
-google | anu@gmail.com | googlepassword
 amazon | anu@gmail.com | amazonpassword
