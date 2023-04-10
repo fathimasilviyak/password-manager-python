@@ -3,6 +3,7 @@ from tkinter import messagebox
 from random import choice, randint, shuffle
 import pyperclip
 import json
+
 # Password Generator
 
 letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v',
@@ -19,7 +20,7 @@ def generate_password():
     password_symbol = [choice(symbols) for i in range(randint(2, 4))]
     password_numbers = [choice(numbers) for i in range(randint(2, 4))]
 
-    password_list =  password_letter + password_symbol + password_numbers
+    password_list = password_letter + password_symbol + password_numbers
 
     shuffle(password_list)
 
@@ -34,7 +35,7 @@ def save_password():
     email = email_input.get()
     password_data = password_input.get()
     new_data = {
-        website:{
+        website: {
             "email": email,
             "password": password_data,
         }
@@ -44,9 +45,20 @@ def save_password():
     else:
         # with open("data.json", mode="w") as data_file:
         #     json.dump(new_data, data_file,indent=4)
-        with open("data.json", "r") as data_file:
-            data = json.load(data_file)
-            print(data)
+        try:
+            with open("data.json", "r") as data_file:
+                # Read old data
+                data = json.load(data_file)
+        except:
+            with open("data.json", "w") as data_file:
+                # create json file and add new data
+                json.dump(new_data, data_file, indent=4)
+        else:
+            # update old data with new data
+            data.update(new_data)
+            with open("data.json", "w") as data_file:
+                json.dump(data, data_file, indent=4)
+        finally:
             website_input.delete(0, END)
             password_input.delete(0, END)
             website_input.focus()
