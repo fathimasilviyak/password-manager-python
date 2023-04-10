@@ -63,6 +63,23 @@ def save_password():
             password_input.delete(0, END)
             website_input.focus()
 
+# Search for password and email
+def search_credentials():
+    website_name = website_input.get()
+
+    try:
+        with open("data.json", "r") as data_file:
+            data = json.load(data_file)
+    except:
+        messagebox.showerror(title="Error", message="No Data File Found.")
+    else:
+        if website_name in data:
+            email = data[website_name]["email"]
+            password = data[website_name]["password"]
+            messagebox.showinfo(title=website_name, message=f"Email: {email}\n Password: {password}")
+        else:
+            messagebox.showerror(title="Error", message=f"No details for {website_name} exists.")
+
 
 # UI setup
 window = Tk()
@@ -81,8 +98,8 @@ password_label = Label(text="Password:")
 password_label.grid(row=3, column=0)
 
 # Entries
-website_input = Entry(width=51)
-website_input.grid(row=1, column=1, columnspan=2)
+website_input = Entry(width=32)
+website_input.grid(row=1, column=1)
 website_input.focus()
 email_input = Entry(width=51)
 email_input.grid(row=2, column=1, columnspan=2)
@@ -95,5 +112,7 @@ generate_password_button = Button(text="Generate Password", command=generate_pas
 generate_password_button.grid(row=3, column=2)
 add_button = Button(text="Add", width=44, command=save_password)
 add_button.grid(row=4, column=1, columnspan=2)
+search_button = Button(text="Search", width=14, command=search_credentials)
+search_button.grid(row=1, column=2)
 
 window.mainloop()
