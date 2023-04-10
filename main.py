@@ -42,8 +42,11 @@ def save_password():
     if len(website) == 0 or len(password_data) == 0:
         messagebox.showerror(title="Oops", message="Please make sure you haven't left any fields empty!")
     else:
-        with open("data.json", mode="w") as data_file:
-            json.dump(new_data, data_file,indent=4)
+        # with open("data.json", mode="w") as data_file:
+        #     json.dump(new_data, data_file,indent=4)
+        with open("data.json", "r") as data_file:
+            data = json.load(data_file)
+            print(data)
             website_input.delete(0, END)
             password_input.delete(0, END)
             website_input.focus()
