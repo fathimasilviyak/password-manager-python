@@ -24,7 +24,10 @@ There is also some basic validation included.
 
 For eg. if you leave one of the fileds empty and you click add, then you will get a pop up that tells you, please don't leave any of the fields empty.
 
-You can also copy the generated password in the clipboard, so that the you can actually immediately use it by pasting it
+This will automatically copy the generated password in the clipboard, so that the you can actually immediately use it by pasting it.
+
+You can also search for the password and email of any website that you signed up.
+
 
 Since this app keeps everything locally on your computer, this is alot safer than using a third-party service for password management, which is internet based service.
 
